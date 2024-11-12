@@ -1,11 +1,23 @@
 package app.entities;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -53,6 +65,11 @@ public class Subject {
 	@Column
 	@NotNull
     private Integer slots;
+	
+	@ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
+	@MapKeyColumn(name = "pk")
+	@Column(name = "section")
+	private Map<Long, String> sections = new HashMap<>();
 
 	public Long getPk() {
 		return pk;
@@ -134,12 +151,20 @@ public class Subject {
 		this.slots = slots;
 	}
 
+	public Map<Long, String> getSections() {
+		return sections;
+	}
+
+	public void setSections(Map<Long, String> sections) {
+		this.sections = sections;
+	}
+
 	@Override
 	public String toString() {
 		return "Subject [pk=" + pk + ", subjectCode=" + subjectCode + ", category=" + category + ", name=" + name
 				+ ", dayOfTheWeekSchedule=" + dayOfTheWeekSchedule + ", timeStart=" + timeStart + ", timeEnd=" + timeEnd
 				+ ", department=" + department + ", departmentRestrictions=" + departmentRestrictions + ", slots="
-				+ slots + "]";
+				+ slots + ", sections=" + sections + "]";
 	}
 
 
