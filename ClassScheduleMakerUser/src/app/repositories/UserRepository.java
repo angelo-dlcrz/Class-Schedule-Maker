@@ -11,5 +11,4 @@ import app.entities.User;
 public interface UserRepository extends JpaRepository<User, Long>{
 	List<User> findAll();
 	User findByStudentID(Long studentID);
-	void deleteByStudentID(Long studentID);
 }

@@ -43,9 +43,11 @@ public class UserComponent {
 		return repo.save(u1);
 	}
 	
-	@Transactional
 	public void deleteUser(Long studentID) {
-		repo.deleteByStudentID(studentID);
+		if(repo.findByStudentID(studentID) == null) {
+			throw new RuntimeException("User not found");
+		}
+		repo.deleteById(studentID);
 	}
 	
 }
