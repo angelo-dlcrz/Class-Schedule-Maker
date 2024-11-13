@@ -3,7 +3,9 @@ package app.rest.controllers;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -37,19 +39,19 @@ public class UserController {
         return uc.findUser(studentID);
     }
     
-    @GET
+    @POST
     @Path("/create")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public User createUser(@QueryParam("n") String name, @QueryParam("c") String course, @QueryParam("pn") String phoneNumber) {
+    public User createUser(@FormParam("n") String name, @FormParam("c") String course, @FormParam("pn") String phoneNumber) {
     	return uc.createUser(name, course, phoneNumber);
     }
     
-    @GET
+    @POST
     @Path("/update")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public User updateUser(@QueryParam("pk") Long studentID, @QueryParam("n") String name, @QueryParam("c") String course, @QueryParam("pn") String phoneNumber) {
+    public User updateUser(@FormParam("pk") Long studentID, @FormParam("n") String name, @FormParam("c") String course, @FormParam("pn") String phoneNumber) {
     	return uc.updateUser(studentID, name, course, phoneNumber);
     }
     
