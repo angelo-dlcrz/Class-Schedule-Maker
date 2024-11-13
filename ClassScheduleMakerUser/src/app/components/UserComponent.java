@@ -44,11 +44,12 @@ public class UserComponent {
 		return repo.save(u1);
 	}
 	
-	public void deleteUser(Long studentID) {
+	public String deleteUser(Long studentID) {
 		if(repo.findByStudentID(studentID) == null) {
-			throw new RuntimeException("User not found");
+			return "User not found";
 		}
 		repo.deleteById(studentID);
+		return "User deleted successfully";
 	}
 	
 }

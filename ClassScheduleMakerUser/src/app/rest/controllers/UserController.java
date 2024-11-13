@@ -58,7 +58,7 @@ public class UserController {
     @GET
     @Path("/delete")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void deleteUser(@QueryParam("pk") Long studentID) {
+    public String deleteUser(@QueryParam("pk") Long studentID) {
     	uc.deleteUser(studentID);
     }
 }
