@@ -19,7 +19,7 @@ public class TimeSlot {
 	
 	@NotNull
 	@ManyToOne
-	@JoinColumn()
+	@JoinColumn(name = "user_studentid")
 	private User user;
 
 	public Long getPk() {
@@ -30,8 +30,16 @@ public class TimeSlot {
 		this.pk = pk;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
-		return "TimeSlot [pk=" + pk + "]";
+		return "TimeSlot [pk=" + pk + ", user=" + user + "]";
 	}
 }
