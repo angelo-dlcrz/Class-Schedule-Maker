@@ -41,7 +41,7 @@ public class UserController {
     
     @POST
     @Path("/create")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public User createUser(@FormParam("n") String name, @FormParam("c") String course, @FormParam("pn") String phoneNumber) {
     	return uc.createUser(name, course, phoneNumber);
@@ -49,7 +49,7 @@ public class UserController {
     
     @POST
     @Path("/update")
-    @Consumes(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public User updateUser(@FormParam("pk") Long studentID, @FormParam("n") String name, @FormParam("c") String course, @FormParam("pn") String phoneNumber) {
     	return uc.updateUser(studentID, name, course, phoneNumber);
