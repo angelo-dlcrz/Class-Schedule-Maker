@@ -8,5 +8,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/SpringBootDependencies"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ClassScheduleMakerUser"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
