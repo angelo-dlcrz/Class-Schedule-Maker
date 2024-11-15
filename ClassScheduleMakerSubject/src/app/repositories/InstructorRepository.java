@@ -11,8 +11,9 @@ import app.entities.Instructor;
 public interface InstructorRepository extends JpaRepository<Instructor, Long> {
 	
 	public List<Instructor> findAll();
-	public Instructor findByInstructorID(Long InstructorID);
-	public void deleteByInstructorID(Long InstructorID);
+	public Instructor findByInstructorPk(Long InstructorPk);
+	public Instructor findByName(String name);
+	public void deleteByInstructorPk(Long InstructorPk);
 	
 	
 

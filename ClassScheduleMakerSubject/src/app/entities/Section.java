@@ -1,21 +1,17 @@
 package app.entities;
 
-<<<<<<< Updated upstream
-=======
+import java.util.HashSet;
 import java.util.Set;
->>>>>>> Stashed changes
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-<<<<<<< Updated upstream
-=======
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
->>>>>>> Stashed changes
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
@@ -25,29 +21,12 @@ public class Section {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column
-<<<<<<< Updated upstream
-    private Long pk;
-=======
     private Long sectionPk;
->>>>>>> Stashed changes
 
 	@Column
 	@NotNull
     private String sectionName;
 	
-<<<<<<< Updated upstream
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "subject_id", nullable = false)
-    private Subject subject;
-
-	public Long getPk() {
-		return pk;
-	}
-
-	public void setPk(Long pk) {
-		this.pk = pk;
-=======
 	@Column
 	@NotNull
     private String dayOfTheWeekSchedule;
@@ -62,21 +41,23 @@ public class Section {
 	
 	@Column
 	@NotNull
-    private Long slots;
+    private int slots;
 	
 	@ManyToOne
-    @JoinColumn(name = "subject_pk")
+    @JoinColumn(name = "subjectPk")
     private Subject subject;
 	
 	@ManyToOne
-    @JoinColumn(name = "room_pk")
+    @JoinColumn(name = "roomPk")
     private Room room;
 	
-	@ManyToMany
-    @JoinTable(name = "instructor",
-            joinColumns = @JoinColumn(name = "section_pk"),
-            inverseJoinColumns = @JoinColumn(name = "instructor_pk"))
-    private Set<Instructor> instructors;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+	    name = "section_instructor",
+	    joinColumns = @JoinColumn(name = "sectionPk"),
+	    inverseJoinColumns = @JoinColumn(name = "instructorPk")
+	)
+	private Set<Instructor> instructors = new HashSet<>();
 
 	public Long getSectionPk() {
 		return sectionPk;
@@ -84,7 +65,6 @@ public class Section {
 
 	public void setSectionPk(Long sectionPk) {
 		this.sectionPk = sectionPk;
->>>>>>> Stashed changes
 	}
 
 	public String getSectionName() {
@@ -95,8 +75,6 @@ public class Section {
 		this.sectionName = sectionName;
 	}
 
-<<<<<<< Updated upstream
-=======
 	public String getDayOfTheWeekSchedule() {
 		return dayOfTheWeekSchedule;
 	}
@@ -121,15 +99,14 @@ public class Section {
 		this.timeEnd = timeEnd;
 	}
 
-	public Long getSlots() {
+	public int getSlots() {
 		return slots;
 	}
 
-	public void setSlots(Long slots) {
+	public void setSlots(int slots) {
 		this.slots = slots;
 	}
 
->>>>>>> Stashed changes
 	public Subject getSubject() {
 		return subject;
 	}
@@ -138,14 +115,6 @@ public class Section {
 		this.subject = subject;
 	}
 
-<<<<<<< Updated upstream
-	@Override
-	public String toString() {
-		return "Section [pk=" + pk + ", sectionName=" + sectionName + ", subject=" + subject + "]";
-	}
-	
-	
-=======
 	public Room getRoom() {
 		return room;
 	}
@@ -168,5 +137,4 @@ public class Section {
 				+ dayOfTheWeekSchedule + ", timeStart=" + timeStart + ", timeEnd=" + timeEnd + ", slots=" + slots
 				+ ", subject=" + subject + ", room=" + room + ", instructors=" + instructors + "]";
 	}
->>>>>>> Stashed changes
 }

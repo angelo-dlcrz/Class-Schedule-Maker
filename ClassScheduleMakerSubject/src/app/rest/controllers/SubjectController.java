@@ -49,14 +49,11 @@ public class SubjectController {
 							  @FormParam("sc") String subjectCode,
 							  @FormParam("c") String category, 
 							  @FormParam("n") String name, 
-							  @FormParam("dw") String dayOfTheWeek, 
-							  @FormParam("ts") String timeStart, 
-							  @FormParam("te") String timeEnd,
 							  @FormParam("d") String department,
-							  @FormParam("dr") String departmentRestrictions,
-							  @FormParam("s") int slots){
+							  @FormParam("dr") String departmentRestrictions
+							  ){
 		
-		return sc.addSubject(subjectCode,category, name, dayOfTheWeek, timeStart, timeEnd, department, departmentRestrictions, slots);
+		return sc.addSubject(subjectCode,category, name, department, departmentRestrictions);
 		
 	}
 
@@ -65,18 +62,16 @@ public class SubjectController {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
 	public Subject updateSubject(
-							  @FormParam("pk") Long pk,
-							  @FormParam("sc") String subjectCode,
-							  @FormParam("c") String category, 
-							  @FormParam("n") String name, 
-							  @FormParam("dw") String dayOfTheWeek, 
-							  @FormParam("ts") String timeStart, 
-							  @FormParam("te") String timeEnd,
-							  @FormParam("d") String department,
-							  @FormParam("dr") String departmentRestrictions,
-							  @FormParam("s") int slots) throws Exception{
+				@FormParam("pk") Long pk,
+				@FormParam("sc") String subjectCode,
+				@FormParam("c") String category, 
+				@FormParam("n") String name, 
+				@FormParam("d") String department,
+				@FormParam("dr") String departmentRestrictions
+			  ) throws Exception{
 		
-		return sc.updateSubject(pk,subjectCode,category, name, dayOfTheWeek, timeStart, timeEnd, department, departmentRestrictions, slots);
+		return sc.updateSubject(pk, subjectCode, category, name, department, departmentRestrictions);
+		
 		
 	}
 	

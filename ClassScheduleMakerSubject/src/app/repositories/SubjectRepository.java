@@ -12,8 +12,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface SubjectRepository extends JpaRepository<Subject, Long> {
 
 	public List<Subject> findAll();
-	public Subject findByPk(Long pk);
-	public void deleteByPk(Long pk);
+	public Subject findBySubjectPk(Long subjectPk);
+	public void deleteBySubjectPk(Long subjectPk);
 	public Subject findBySubjectCode(String subjectCode);
 	
 }

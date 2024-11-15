@@ -41,24 +41,42 @@ public class SectionController {
 		return sc.getAllSections();
 	}
 	
+	//	public Section createSection(String name, String dayOfTheWeekSchedule, String timeStart, String timeEnd, int slots, String subjectCode, String roomName, String instructor) {
+
+	
 	@POST
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-	public Section addSection(@FormParam("sc") String sub, @FormParam("n") String name){
+	public Section addSection(@FormParam("n") String name,
+							@FormParam("d") String dayOfTheWeekSchedule,
+							@FormParam("ts") String timeStart, 
+							@FormParam("te") String timeEnd, 
+							@FormParam("s") int slots,
+							@FormParam("sc") String subjectCode,
+							@FormParam("rn") String roomName,
+							@FormParam("i") String instructor){
 		
-		return sc.createSection(sub, name);	
+		return sc.createSection(name, dayOfTheWeekSchedule, timeStart, timeEnd, slots, subjectCode, roomName, instructor);
 	}
 
 	@POST
 	@Path("/update")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-	public Section updateSection(@FormParam("pk") Long pk, @FormParam("sc") String sub, @FormParam("n") String name) throws Exception{
-		
-		return sc.updateSection(pk, sub, name);
-		
-	}
+	public Section updateSection(
+			@FormParam("pk") Long pk,
+			@FormParam("n") String name,
+			@FormParam("d") String dayOfTheWeekSchedule,
+			@FormParam("ts") String timeStart, 
+			@FormParam("te") String timeEnd, 
+			@FormParam("s") int slots,
+			@FormParam("sc") String subjectCode,
+			@FormParam("rn") String roomName,
+			@FormParam("i") String instructor){
+
+return sc.updateSection(pk,name, dayOfTheWeekSchedule, timeStart, timeEnd, slots, subjectCode, roomName, instructor);
+}
 	
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)

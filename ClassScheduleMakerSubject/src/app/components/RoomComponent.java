@@ -19,18 +19,12 @@ public class RoomComponent {
 		return this.roomRepo.findAll();
 	}
 	
-<<<<<<< Updated upstream
-=======
 	@Transactional
->>>>>>> Stashed changes
 	public Room findRoom(Long pk) {
-		return this.roomRepo.findByRoomID(pk);
+		return this.roomRepo.findByRoomPk(pk);
 	}
 
-<<<<<<< Updated upstream
-=======
 	@Transactional
->>>>>>> Stashed changes
     public Room addRoom(String roomNumber) {
         Room newRoom = new Room();
         	newRoom.setRoomNumber(roomNumber);
@@ -39,7 +33,7 @@ public class RoomComponent {
 	
     public Room updateRoom(Long pk, String roomNumber) throws Exception {
     	
-    	Room existingRoom = roomRepo.findByRoomID(pk);
+    	Room existingRoom = roomRepo.findByRoomPk(pk);
         
     	//Basically, it only updates values with non-empty parameters <3
     	
@@ -61,10 +55,10 @@ public class RoomComponent {
 
     @Transactional
     public String deleteRoom(Long pk) {
-        Room existingRoom = roomRepo.findByRoomID(pk);
+        Room existingRoom = roomRepo.findByRoomPk(pk);
         
         if (existingRoom != null) {
-        	roomRepo.deleteByRoomID(pk);
+        	roomRepo.deleteByRoomPk(pk);
             return "Room with pk: " + pk + " has been deleted successfully.";
         } else {
             return "No Room has been deleted.";

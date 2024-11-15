@@ -11,8 +11,9 @@ import app.entities.Room;
 public interface RoomRepository extends JpaRepository<Room, Long> {
 	
 	public List<Room> findAll();
-	public Room findByRoomID(Long roomID);
-	public void deleteByRoomID(Long roomID);
+	public Room findByRoomPk(Long roomPk);
+	public void deleteByRoomPk(Long roomPk);
+	public Room findByRoomNumber (String roomNumber);
 	
 	
 

@@ -46,10 +46,9 @@ public class InstructorController {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
 	public Instructor addInstructor(
-							  @FormParam("n") String name,
-							  @FormParam("ch") String courseHandled) throws Exception{
+							  @FormParam("n") String name) throws Exception{
 		
-			return ic.addInstructor(name, courseHandled);	
+			return ic.addInstructor(name);	
 	}
 
 	@POST
@@ -58,10 +57,9 @@ public class InstructorController {
     @Produces(MediaType.APPLICATION_JSON)
 	public Instructor updateInstructor(
 							  @FormParam("pk") Long pk,
-							  @FormParam("n") String name,
-							  @FormParam("ch") String courseHandled) throws Exception{
+							  @FormParam("n") String name) throws Exception{
 		
-		return ic.updateInstructor(pk, name, courseHandled);
+		return ic.updateInstructor(pk, name);
 	}
 	
 	@GET

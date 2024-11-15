@@ -12,8 +12,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface SectionRepository extends JpaRepository<Section, Long> {
 
 	public List<Section> findAll();
-	public Section findByPk(Long pk);
-	public void deleteByPk(Long pk);
+	public Section findBySectionPk(Long sectionPk);
+	public void deleteBySectionPk(Long sectionPk);
+	public Section findBySectionName(String sectionName);
 	
 }
 
