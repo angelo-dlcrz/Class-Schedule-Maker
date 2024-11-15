@@ -43,7 +43,10 @@ public class InstructorComponent {
 	        	throw new IllegalArgumentException("Instructor with pk: " + pk + " not found. Check if pk parameter is NULL or INVALID.");	            
 	        }
 	        
-            existingInstructor.setName(name);
+	        if(name != null && !name.isEmpty()) {
+	           existingInstructor.setName(name);
+
+	        }
 	        return instructRepo.save(existingInstructor);
     }
 			

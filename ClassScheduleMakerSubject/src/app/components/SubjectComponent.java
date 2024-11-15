@@ -57,46 +57,29 @@ public class SubjectComponent {
     	Subject existingSubject = subjRepo.findBySubjectPk(pk);
         
     	//Basically, it only updates values with non-empty parameters <3
-//    	
-    			if(existingSubject!=null) {
-    				existingSubject.setSubjectCode(subjectCode);
-    				existingSubject.setCategory(category);
-    				existingSubject.setDepartment(department);
-    				existingSubject.setDepartmentRestrictions(departmentRestrictions);
-    				return subjRepo.save(existingSubject);
-    			}
-//    	
-//    		   if (existingSubject != null) {
-//   	    
-//  	        	 if (subjectCode != null && !subjectCode.isEmpty()) {
-//  	                 existingSubject.setSubjectCode(subjectCode);
-//  	             }
-//  	        	 if (category != null && !category.isEmpty()) {
-//  	                 existingSubject.setCategory(category);
-//  	             }
-//  	             if (name != null && !name.isEmpty()) {
-//  	                 existingSubject.setName(name);
-//  	             }
-//  	             if (dayOfTheWeek != null && !dayOfTheWeek.isEmpty()) {
-//  	                 existingSubject.setDayOfTheWeekSchedule(dayOfTheWeek);
-//  	             }
-//  	             if (timeStart != null && !timeStart.isEmpty()) {
-//  	                 existingSubject.setTimeStart(timeStart);
-//  	             }
-//  	             if (timeEnd != null && !timeEnd.isEmpty()) {
-//  	                 existingSubject.setTimeEnd(timeEnd);
-//  	             }
-//  	             if (department != null && !department.isEmpty()) {
-//  	                 existingSubject.setDepartment(department);
-//  	             }
-//  	             if (departmentRestrictions != null && !departmentRestrictions.isEmpty()) {
-//  	                 existingSubject.setDepartmentRestrictions(departmentRestrictions);
-//  	             }
-//  	             if (slots > 0) { // Assuming slots cannot be negative; adjust as needed for default behavior
-//  	                 existingSubject.setSlots(slots);
-//  	             }
-//  	            
-//  	            return subjRepo.save(existingSubject);
+  	
+    	if (existingSubject != null) {
+       	    
+ 	         if (subjectCode != null && !subjectCode.isEmpty()) {
+ 	                 existingSubject.setSubjectCode(subjectCode);
+ 	             }
+ 	          if (category != null && !category.isEmpty()) {
+ 	                 existingSubject.setCategory(category);
+ 	             }
+
+ 	           if (department != null && !department.isEmpty()) {
+ 	                 existingSubject.setDepartment(department);
+ 	             }
+ 	           if (departmentRestrictions != null && !departmentRestrictions.isEmpty()) {
+ 	                 existingSubject.setDepartmentRestrictions(departmentRestrictions);
+ 	             }
+
+ 	        	        	
+ 	       	return subjRepo.save(existingSubject);
+ 	            
+ 	         
+  
+   	}
   	        	        	
   	            throw new IllegalArgumentException("Subject with pk: " + pk + " not found. Check if pk parameter is NULL or INVALID.");
   	            

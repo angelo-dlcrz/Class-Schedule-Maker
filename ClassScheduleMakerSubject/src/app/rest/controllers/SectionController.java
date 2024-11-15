@@ -7,6 +7,7 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -29,7 +30,7 @@ public class SectionController {
 	@Path("/retrieve")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Section getSubject(@QueryParam("p") Long pk) {
+	public Section getSection(@QueryParam("p") Long pk) {
 		return sc.findSection(pk);
 	}
 	
@@ -37,7 +38,7 @@ public class SectionController {
 	@Path("/retrieveAll")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Section> getSubjectAll() {
+	public List<Section> getSectionAll() {
 		return sc.getAllSections();
 	}
 	
@@ -60,7 +61,7 @@ public class SectionController {
 		return sc.createSection(name, dayOfTheWeekSchedule, timeStart, timeEnd, slots, subjectCode, roomName, instructor);
 	}
 
-	@POST
+	@PUT
 	@Path("/update")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
@@ -78,11 +79,11 @@ public class SectionController {
 return sc.updateSection(pk,name, dayOfTheWeekSchedule, timeStart, timeEnd, slots, subjectCode, roomName, instructor);
 }
 	
-	@GET
+	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/delete")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String deleteSubject(@QueryParam("pk") Long pk) {
+	public String deleteSection(@QueryParam("pk") Long pk) {
 	    
 		return sc.deleteSection(pk);
 	    
