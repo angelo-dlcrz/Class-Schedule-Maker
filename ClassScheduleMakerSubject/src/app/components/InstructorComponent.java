@@ -8,7 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import app.entities.Instructor;
 import app.repositories.InstructorRepository;
+<<<<<<< Updated upstream
 import app.repositories.SubjectRepository;
+=======
+>>>>>>> Stashed changes
 
 @Component
 public class InstructorComponent {
@@ -16,17 +19,26 @@ public class InstructorComponent {
 	@Autowired
    	private InstructorRepository instructRepo;
 	
+<<<<<<< Updated upstream
 	@Autowired
 	private SubjectComponent sc;
 	
+=======
+	@Transactional
+>>>>>>> Stashed changes
 	public List<Instructor> findInstructorAll(){
 		return this.instructRepo.findAll();
 	}
 	
+<<<<<<< Updated upstream
+=======
+	@Transactional
+>>>>>>> Stashed changes
 	public Instructor findInstructor(Long pk) {
 		return this.instructRepo.findByInstructorID(pk);
 	}
 
+<<<<<<< Updated upstream
     public Instructor addInstructor(String name, String courseHandled) throws Exception{
    
   
@@ -52,11 +64,23 @@ public class InstructorComponent {
     }
 	
     public Instructor updateInstructor(Long pk, String name, String courseHandled) throws Exception {
+=======
+	@Transactional
+    public Instructor addInstructor(String name) throws Exception{
+   
+   		Instructor newInstructor = new Instructor();
+        newInstructor.setName(name);
+        return instructRepo.save(newInstructor);
+    }
+	
+    public Instructor updateInstructor(Long pk, String name) throws Exception {
+>>>>>>> Stashed changes
     	
     	Instructor existingInstructor = instructRepo.findByInstructorID(pk);
         
     	//Basically, it only updates values with non-empty parameters <3
     	
+<<<<<<< Updated upstream
 	        if (existingInstructor != null) {
 	        	
 	        	 if (name != null && !name.isEmpty()) {
@@ -80,6 +104,14 @@ public class InstructorComponent {
 	            throw new IllegalArgumentException("Instructor with pk: " + pk + " not found. Check if pk parameter is NULL or INVALID.");
 	            
 	        }
+=======
+	        if (existingInstructor == null) {
+	        	throw new IllegalArgumentException("Instructor with pk: " + pk + " not found. Check if pk parameter is NULL or INVALID.");	            
+	        }
+	        
+            existingInstructor.setName(name);
+	        return instructRepo.save(existingInstructor);
+>>>>>>> Stashed changes
     }
 			
 

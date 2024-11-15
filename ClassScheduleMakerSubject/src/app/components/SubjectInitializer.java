@@ -28,92 +28,173 @@ public class SubjectInitializer {
 			subj[0].setSubjectCode("THEO 11");
 			subj[0].setCategory("CORE");
 			subj[0].setName("FAITH, SPIRITUALITY, AND THE CHURCH");
+<<<<<<< Updated upstream
 			subj[0].setDayOfTheWeekSchedule("M-TH");
 			subj[0].setTimeStart("09:00");
 			subj[0].setTimeEnd("11:00");
 			subj[0].setDepartment("Department of THEOLOGY");
 			subj[0].setDepartmentRestrictions("");
 			subj[0].setSlots(30);
+=======
+//			subj[0].setDayOfTheWeekSchedule("M-TH");
+//			subj[0].setTimeStart("09:00");
+//			subj[0].setTimeEnd("11:00");
+			subj[0].setDepartment("Department of THEOLOGY");
+			subj[0].setDepartmentRestrictions("");
+//			subj[0].setSlots(30);
+>>>>>>> Stashed changes
 
 			subj[1].setSubjectCode("THEO 12");
 			subj[1].setCategory("CORE");
 			subj[1].setName("THEOLOGICAL ANTHROPOLOGY");
+<<<<<<< Updated upstream
 			subj[1].setDayOfTheWeekSchedule("T-F");
 			subj[1].setTimeStart("10:00");
 			subj[1].setTimeEnd("12:00");
 			subj[1].setDepartment("THEOLOGY");
 			subj[1].setDepartmentRestrictions("");
 			subj[1].setSlots(30);
+=======
+//			subj[1].setDayOfTheWeekSchedule("T-F");
+//			subj[1].setTimeStart("10:00");
+//			subj[1].setTimeEnd("12:00");
+			subj[1].setDepartment("THEOLOGY");
+			subj[1].setDepartmentRestrictions("");
+//			subj[1].setSlots(30);
+>>>>>>> Stashed changes
 
 			subj[2].setSubjectCode("PHYED 111.30");
 			subj[2].setCategory("CORE");
 			subj[2].setName("FUNDAMENTAL MOVEMENT FOR HEALTH AND FITNESS");
+<<<<<<< Updated upstream
 			subj[2].setDayOfTheWeekSchedule("W-F");
 			subj[2].setTimeStart("10:00");
 			subj[2].setTimeEnd("12:00");
 			subj[2].setDepartment("PHYSICAL EDUCATION");
 			subj[2].setDepartmentRestrictions("");
 			subj[2].setSlots(30);
+=======
+//			subj[2].setDayOfTheWeekSchedule("W-F");
+//			subj[2].setTimeStart("10:00");
+//			subj[2].setTimeEnd("12:00");
+			subj[2].setDepartment("PHYSICAL EDUCATION");
+			subj[2].setDepartmentRestrictions("");
+//			subj[2].setSlots(30);
+>>>>>>> Stashed changes
 
 			subj[3].setSubjectCode("PHYED 113");
 			subj[3].setCategory("CORE");
 			subj[3].setName("PHYSICAL FITNESS FOR WOMEN");
+<<<<<<< Updated upstream
 			subj[3].setDayOfTheWeekSchedule("T-TH");
 			subj[3].setTimeStart("14:00");
 			subj[3].setTimeEnd("16:00");
 			subj[3].setDepartment("PHYSICAL EDUCATION");
 			subj[3].setDepartmentRestrictions("");
 			subj[3].setSlots(25);
+=======
+//			subj[3].setDayOfTheWeekSchedule("T-TH");
+//			subj[3].setTimeStart("14:00");
+//			subj[3].setTimeEnd("16:00");
+			subj[3].setDepartment("PHYSICAL EDUCATION");
+			subj[3].setDepartmentRestrictions("");
+//			subj[3].setSlots(25);
+>>>>>>> Stashed changes
 			
 			subj[4].setSubjectCode("DEV 183.13");
 			subj[4].setCategory("MAJOR");
 			subj[4].setName("SOCIAL MARKETING");
+<<<<<<< Updated upstream
 			subj[4].setDayOfTheWeekSchedule("M-W");
 			subj[4].setTimeStart("14:00");
 			subj[4].setTimeEnd("16:00");
 			subj[4].setDepartment("DEVELOPMENT STUDIES");
 			subj[4].setDepartmentRestrictions("");
 			subj[4].setSlots(20);
+=======
+//			subj[4].setDayOfTheWeekSchedule("M-W");
+//			subj[4].setTimeStart("14:00");
+//			subj[4].setTimeEnd("16:00");
+			subj[4].setDepartment("DEVELOPMENT STUDIES");
+			subj[4].setDepartmentRestrictions("");
+//			subj[4].setSlots(20);
+>>>>>>> Stashed changes
 
 			subj[5].setSubjectCode("DEV 183.25");
 			subj[5].setCategory("MAJOR");
 			subj[5].setName("SOCIAL ENTREPRENEURSHIP");
+<<<<<<< Updated upstream
 			subj[5].setDayOfTheWeekSchedule("T-TH");
 			subj[5].setTimeStart("09:30");
 			subj[5].setTimeEnd("11:30");
 			subj[5].setDepartment("DEVELOPMENT STUDIES");
 			subj[5].setDepartmentRestrictions("");
 			subj[5].setSlots(20);
+=======
+//			subj[5].setDayOfTheWeekSchedule("T-TH");
+//			subj[5].setTimeStart("09:30");
+//			subj[5].setTimeEnd("11:30");
+			subj[5].setDepartment("DEVELOPMENT STUDIES");
+			subj[5].setDepartmentRestrictions("");
+//			subj[5].setSlots(20);
+>>>>>>> Stashed changes
 			
 			subj[6].setSubjectCode("PSYC 80.03i");
 			subj[6].setCategory("MAJOR ELECTIVE");
 			subj[6].setName("INTRODUCTION TO POLITICAL PSYCHOLOGY");
+<<<<<<< Updated upstream
 			subj[6].setDayOfTheWeekSchedule("W-F");
 			subj[6].setTimeStart("13:00");
 			subj[6].setTimeEnd("15:00");
 			subj[6].setDepartment("PSYCHOLOGY");
 			subj[6].setDepartmentRestrictions("");
 			subj[6].setSlots(25);
+=======
+//			subj[6].setDayOfTheWeekSchedule("W-F");
+//			subj[6].setTimeStart("13:00");
+//			subj[6].setTimeEnd("15:00");
+			subj[6].setDepartment("PSYCHOLOGY");
+			subj[6].setDepartmentRestrictions("");
+//			subj[6].setSlots(25);
+>>>>>>> Stashed changes
 
 			subj[7].setSubjectCode("ENVI 161i");
 			subj[7].setCategory("MAJOR ELECTIVE");
 			subj[7].setName("INTEGRAL ECOLOGY");
+<<<<<<< Updated upstream
 			subj[7].setDayOfTheWeekSchedule("M-T");
 			subj[7].setTimeStart("12:00");
 			subj[7].setTimeEnd("14:00");
 			subj[7].setDepartment("ENVIRONMENTAL SCIENCE");
 			subj[7].setDepartmentRestrictions("");
 			subj[7].setSlots(20);
+=======
+//			subj[7].setDayOfTheWeekSchedule("M-T");
+//			subj[7].setTimeStart("12:00");
+//			subj[7].setTimeEnd("14:00");
+			subj[7].setDepartment("ENVIRONMENTAL SCIENCE");
+			subj[7].setDepartmentRestrictions("");
+//			subj[7].setSlots(20);
+>>>>>>> Stashed changes
 
 			subj[8].setSubjectCode("STS 21i");
 			subj[8].setCategory("MAJOR ELECTIVE");
 			subj[8].setName("SCIENCE IN SCI-FI SHOWS");
+<<<<<<< Updated upstream
 			subj[8].setDayOfTheWeekSchedule("T-TH");
 			subj[8].setTimeStart("10:00");
 			subj[8].setTimeEnd("12:00");
 			subj[8].setDepartment("SCIENCE, TECHNOLOGY, AND SOCIETY");
 			subj[8].setDepartmentRestrictions("DISCS MAJORS ONLY");
 			subj[8].setSlots(30);
+=======
+//			subj[8].setDayOfTheWeekSchedule("T-TH");
+//			subj[8].setTimeStart("10:00");
+//			subj[8].setTimeEnd("12:00");
+			subj[8].setDepartment("SCIENCE, TECHNOLOGY, AND SOCIETY");
+			subj[8].setDepartmentRestrictions("DISCS MAJORS ONLY");
+//			subj[8].setSlots(30);
+>>>>>>> Stashed changes
 			
 
 			for(int x = 0; x <= 8; x++) {

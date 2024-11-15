@@ -1,5 +1,6 @@
 package app.entities;
 
+<<<<<<< Updated upstream
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +19,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+=======
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+>>>>>>> Stashed changes
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -26,21 +34,32 @@ public class Subject {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column
+<<<<<<< Updated upstream
     private Long pk;
+=======
+    private Long subjectPk;
+>>>>>>> Stashed changes
 
 	@Column
 	@NotNull
     private String subjectCode;
+<<<<<<< Updated upstream
 	//example CSCI41
+=======
+>>>>>>> Stashed changes
 	
 	@Column
 	@NotNull
     private String category;
+<<<<<<< Updated upstream
 	//Major
+=======
+>>>>>>> Stashed changes
 
 	@Column
 	@NotNull
     private String name;
+<<<<<<< Updated upstream
 	//Introduction to Dying
 
 	@Column
@@ -54,6 +73,8 @@ public class Subject {
 	@Column
 	@NotNull
     private String timeEnd;
+=======
+>>>>>>> Stashed changes
 
 	@Column
 	@NotNull
@@ -62,6 +83,7 @@ public class Subject {
 	@Column
     private String departmentRestrictions;
 
+<<<<<<< Updated upstream
 	@Column
 	@NotNull
     private Integer slots;
@@ -77,6 +99,14 @@ public class Subject {
 
 	public void setPk(Long pk) {
 		this.pk = pk;
+=======
+	public Long getSubjectPk() {
+		return subjectPk;
+	}
+
+	public void setSubjectPk(Long subjectPk) {
+		this.subjectPk = subjectPk;
+>>>>>>> Stashed changes
 	}
 
 	public String getSubjectCode() {
@@ -103,6 +133,7 @@ public class Subject {
 		this.name = name;
 	}
 
+<<<<<<< Updated upstream
 	public String getDayOfTheWeekSchedule() {
 		return dayOfTheWeekSchedule;
 	}
@@ -127,6 +158,8 @@ public class Subject {
 		this.timeEnd = timeEnd;
 	}
 
+=======
+>>>>>>> Stashed changes
 	public String getDepartment() {
 		return department;
 	}
@@ -143,6 +176,7 @@ public class Subject {
 		this.departmentRestrictions = departmentRestrictions;
 	}
 
+<<<<<<< Updated upstream
 	public Integer getSlots() {
 		return slots;
 	}
@@ -172,4 +206,11 @@ public class Subject {
 	
 
 	
+=======
+	@Override
+	public String toString() {
+		return "Subject [subjectPk=" + subjectPk + ", subjectCode=" + subjectCode + ", category=" + category + ", name="
+				+ name + ", department=" + department + ", departmentRestrictions=" + departmentRestrictions + "]";
+	}
+>>>>>>> Stashed changes
 }

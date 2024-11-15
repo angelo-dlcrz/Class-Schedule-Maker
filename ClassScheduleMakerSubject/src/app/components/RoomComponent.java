@@ -19,10 +19,18 @@ public class RoomComponent {
 		return this.roomRepo.findAll();
 	}
 	
+<<<<<<< Updated upstream
+=======
+	@Transactional
+>>>>>>> Stashed changes
 	public Room findRoom(Long pk) {
 		return this.roomRepo.findByRoomID(pk);
 	}
 
+<<<<<<< Updated upstream
+=======
+	@Transactional
+>>>>>>> Stashed changes
     public Room addRoom(String roomNumber) {
         Room newRoom = new Room();
         	newRoom.setRoomNumber(roomNumber);

@@ -20,15 +20,27 @@ public class SectionComponent {
 	@Autowired
    	private SubjectRepository subrepo;
 	
+<<<<<<< Updated upstream
 	public List<Section> getAllSections(){
 		return this.repo.findAll();
 	}
 	
+=======
+	@Transactional
+	public List<Section> getAllSections(){
+		return this.repo.findAll();
+	}
+	@Transactional
+>>>>>>> Stashed changes
 	public Section findSection(Long pk) {
 		return this.repo.findByPk(pk);
 	}
 	
+<<<<<<< Updated upstream
 	public Section createSection(String sc, String name) {
+=======
+	public Section createSection(String sc, String name, String ) {
+>>>>>>> Stashed changes
 		Subject s1 = subrepo.findBySubjectCode(sc);
 		if(s1==null) {
 			throw new RuntimeException("Subject not found");
@@ -48,7 +60,13 @@ public class SectionComponent {
 		System.out.println(s1.getSections());
 		return s;
 	}
+<<<<<<< Updated upstream
 	
+=======
+
+
+
+>>>>>>> Stashed changes
 	public Section updateSection(Long pk, String sc, String name) {
 		Section s = repo.findByPk(pk);
 		Subject sub = subrepo.findBySubjectCode(sc);
