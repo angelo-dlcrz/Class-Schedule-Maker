@@ -3,11 +3,9 @@ package app.rest.controllers;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -49,7 +47,7 @@ public class UserController {
     	return uc.createUser(name, course, phoneNumber);
     }
     
-    @PUT
+    @POST
     @Path("/update")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
@@ -57,23 +55,7 @@ public class UserController {
     	return uc.updateUser(studentID, name, course, phoneNumber);
     }
     
-    @POST
-    @Path("/addSection")
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Produces(MediaType.APPLICATION_JSON)
-    public User updateUser(@FormParam("stupk") Long studentID, @FormParam("secpk") Long sectionPk) {
-    	return uc.addSection(studentID, sectionPk);
-    }
-    
-    @PUT
-    @Path("/updateSection")
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Produces(MediaType.APPLICATION_JSON)
-    public User updateUser(@FormParam("stupk") Long studentID, @FormParam("oldsec") Long oldSectionPk, @FormParam("newsec") Long newSectionPk) {
-    	return uc.updateSection(studentID, oldSectionPk, newSectionPk);
-    }
-    
-    @DELETE
+    @GET
     @Path("/delete")
     @Consumes(MediaType.APPLICATION_JSON)
     public String deleteUser(@QueryParam("pk") Long studentID) {
