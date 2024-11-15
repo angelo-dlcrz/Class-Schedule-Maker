@@ -10,6 +10,6 @@ import app.entities.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
 	public List<User> findAll();
-	public User findByStudentID(Long studentID);
-	public void deleteById(Long id);
+	public User findByUserPk(Long userPk);
+	public void deleteByUserPk(Long userPk);
 }
