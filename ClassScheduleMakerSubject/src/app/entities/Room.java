@@ -16,9 +16,10 @@ public class Room {
 	@Column
     private Long roomPk;
 
+	// Changed to roomName
 	@Column
 	@NotNull
-    private String roomNumber;
+    private String roomName;
 
 	public Long getRoomPk() {
 		return roomPk;
@@ -28,16 +29,16 @@ public class Room {
 		this.roomPk = roomPk;
 	}
 
-	public String getRoomNumber() {
-		return roomNumber;
+	public String getRoomName() {
+		return roomName;
 	}
 
-	public void setRoomNumber(String roomNumber) {
-		this.roomNumber = roomNumber;
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
 	}
 
 	@Override
 	public String toString() {
-		return "Room [roomPk=" + roomPk + ", roomNumber=" + roomNumber + "]";
+		return "Room [roomPk=" + roomPk + ", roomName=" + roomName + "]";
 	}
 }
