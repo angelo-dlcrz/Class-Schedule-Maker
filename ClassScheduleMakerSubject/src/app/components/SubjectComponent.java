@@ -27,8 +27,7 @@ public class SubjectComponent {
 	}
 
 	@Transactional
-    public Subject addSubject(String subjectCode, String category, String name, String department, 
-                              String departmentRestrictions) {
+    public Subject addSubject(String subjectCode, String name, String department) {
     	
     	if (subjectExistsByCode(subjectCode)) {
 	           throw new IllegalArgumentException("Cannot add new subject with same Subject Code: " + subjectCode);
@@ -36,13 +35,11 @@ public class SubjectComponent {
 		 else {
 			 Subject newSubject = new Subject();
 	        	newSubject.setSubjectCode(subjectCode);
-		        newSubject.setCategory(category);
-		        newSubject.setName(name);
+		        newSubject.setCourseTitle(name);
 //		        newSubject.setDayOfTheWeekSchedule(dayOfTheWeek);
 //		        newSubject.setTimeStart(timeStart);
 //		        newSubject.setTimeEnd(timeEnd);
 		        newSubject.setDepartment(department);
-		        newSubject.setDepartmentRestrictions(departmentRestrictions);
 //		        newSubject.setSlots(slots);
 	        return subjRepo.save(newSubject);
 
@@ -51,8 +48,7 @@ public class SubjectComponent {
         
     }
 	
-    public Subject updateSubject(Long pk, String subjectCode, String category, String name, String department, 
-            String departmentRestrictions) throws Exception {
+    public Subject updateSubject(Long pk, String subjectCode, String name, String department) throws Exception {
     	
     	Subject existingSubject = subjRepo.findBySubjectPk(pk);
         
@@ -63,17 +59,9 @@ public class SubjectComponent {
  	         if (subjectCode != null && !subjectCode.isEmpty()) {
  	                 existingSubject.setSubjectCode(subjectCode);
  	             }
- 	          if (category != null && !category.isEmpty()) {
- 	                 existingSubject.setCategory(category);
- 	             }
-
  	           if (department != null && !department.isEmpty()) {
  	                 existingSubject.setDepartment(department);
  	             }
- 	           if (departmentRestrictions != null && !departmentRestrictions.isEmpty()) {
- 	                 existingSubject.setDepartmentRestrictions(departmentRestrictions);
- 	             }
-
  	        	        	
  	       	return subjRepo.save(existingSubject);
  	            

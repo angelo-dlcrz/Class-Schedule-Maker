@@ -29,7 +29,7 @@ public class InstructorComponent {
     public Instructor addInstructor(String name) throws Exception{
    
    		Instructor newInstructor = new Instructor();
-        newInstructor.setName(name);
+        newInstructor.setInstructorName(name);
         return instructRepo.save(newInstructor);
     }
 	
@@ -44,7 +44,7 @@ public class InstructorComponent {
 	        }
 	        
 	        if(name != null && !name.isEmpty()) {
-	           existingInstructor.setName(name);
+	           existingInstructor.setInstructorName(name);
 
 	        }
 	        return instructRepo.save(existingInstructor);

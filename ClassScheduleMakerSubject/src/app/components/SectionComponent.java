@@ -40,12 +40,12 @@ public class SectionComponent {
 	}
 	
 	@Transactional
-	public Section createSection(String name, String dayOfTheWeekSchedule, String timeStart, String timeEnd, int slots, String subjectCode, String roomName, String instructor) {
+	public Section createSection(String sectionName, String dayOfTheWeekSchedule, String timeStart, String timeEnd, String subjectCode, String roomName, String instructor) {
 		Subject s1 = subrepo.findBySubjectCode(subjectCode);
 		Instructor ins = insrepo.findByName(instructor);
-		Room rm = roomrepo.findByRoomNumber(roomName);
+		Room rm = roomrepo.findByRoomName(roomName);
 
-		Section sect = repo.findBySectionName(name);
+		Section sect = repo.findBySectionName(sectionName);
 		
 		if(s1==null) {
 			throw new RuntimeException("Subject not found");
@@ -56,11 +56,10 @@ public class SectionComponent {
 		}
 		
 		Section s = new Section();
-		s.setSectionName(name);
+		s.setSectionName(sectionName);
 		s.setDayOfTheWeekSchedule(dayOfTheWeekSchedule);
 		s.setTimeStart(timeStart);
 		s.setTimeEnd(timeEnd);
-		s.setSlots(slots);
 		s.setSubject(s1);
 		s.setRoom(rm);
 		s.getInstructors().add(ins);
@@ -71,14 +70,14 @@ public class SectionComponent {
 
 
 	@Transactional
-	public Section updateSection(Long pk, String name, String dayOfTheWeekSchedule, String timeStart, String timeEnd, int slots, String subjectCode, String roomName, String instructor) {
+	public Section updateSection(Long pk, String sectionName, String dayOfTheWeekSchedule, String timeStart, String timeEnd, String subjectCode, String roomName, String instructor) {
 		
 		Section s = repo.findBySectionPk(pk);
 		Subject s1 = subrepo.findBySubjectCode(subjectCode);
 		Instructor ins = insrepo.findByName(instructor);
-		Room rm = roomrepo.findByRoomNumber(roomName);
+		Room rm = roomrepo.findByRoomName(roomName);
 
-		Section sect = repo.findBySectionName(name);
+		Section sect = repo.findBySectionName(sectionName);
 		
 		if(s1==null) {
 			throw new RuntimeException("Subject not found");
@@ -88,11 +87,10 @@ public class SectionComponent {
 			throw new RuntimeException("Section already exists.");
 		}
 		
-		s.setSectionName(name);
+		s.setSectionName(sectionName);
 		s.setDayOfTheWeekSchedule(dayOfTheWeekSchedule);
 		s.setTimeStart(timeStart);
 		s.setTimeEnd(timeEnd);
-		s.setSlots(slots);
 		s.setSubject(s1);
 		s.setRoom(rm);
 		s.getInstructors().add(ins);

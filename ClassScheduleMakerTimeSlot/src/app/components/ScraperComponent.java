@@ -17,8 +17,8 @@ import java.util.List;
 
 public class ScraperComponent {
 	private static final String URL = "https://aisis.ateneo.edu/j_aisis/classSkeds.do";
-    private static final String COOKIE = "JSESSIONID=0a0f10d930d60251563f6df54a4d916ebb6b5cf6b787.e3yKch4Pb3mSe34KbxeTchaTby0; __utmz=48268342.1705928712.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); AWSALBTG=4GPhqteHztFPoVlSB3L8jQDIt9RwM6DM+pr6UnHYD7T0nf8vZw7ClMmkHD9RGwN+5bMpKXsRw3QHkd95Mg/Vpf3u06AnJcowRRcRs/tOuofk3Et+XorNIL44b7uybgCuK4OVUhz6NCLvSHMZt5gRikzvdVwDEBUH+EyAzktcJXW6; AWSALBCORS=Vc3fq51qIdAfjX8ZMpvOswlYS+Tq7hM0Pz5ZsGvMxduFJ4TJVGAaM0Uuoje1iLI9nuMnY0EOna3jRJsvTyy9e2wprudJjIcEe7XLzLNi25w2aVp7WcD0WOTOZyRF";
-
+    private static final String COOKIE = "";
+    
     public void scrapeAllDepartments() {
         String[] deptCodes = {
                 "IE", "BIO", "CH", "CHN", "COM", "CEPP", "CPA", "ELM", "DS", "EC", "ECE",
