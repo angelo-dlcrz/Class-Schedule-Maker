@@ -49,16 +49,15 @@ public class SectionController {
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-	public Section addSection(@FormParam("n") String name,
+	public Section addSection(@FormParam("n") String sectionName,
 							@FormParam("d") String dayOfTheWeekSchedule,
 							@FormParam("ts") String timeStart, 
-							@FormParam("te") String timeEnd, 
-							@FormParam("s") int slots,
+							@FormParam("te") String timeEnd,
 							@FormParam("sc") String subjectCode,
 							@FormParam("rn") String roomName,
 							@FormParam("i") String instructor){
 		
-		return sc.createSection(name, dayOfTheWeekSchedule, timeStart, timeEnd, slots, subjectCode, roomName, instructor);
+		return sc.createSection(sectionName, dayOfTheWeekSchedule, timeStart, timeEnd, subjectCode, roomName, instructor);
 	}
 
 	@PUT
@@ -67,16 +66,15 @@ public class SectionController {
     @Produces(MediaType.APPLICATION_JSON)
 	public Section updateSection(
 			@FormParam("pk") Long pk,
-			@FormParam("n") String name,
+			@FormParam("n") String sectionName,
 			@FormParam("d") String dayOfTheWeekSchedule,
 			@FormParam("ts") String timeStart, 
-			@FormParam("te") String timeEnd, 
-			@FormParam("s") int slots,
+			@FormParam("te") String timeEnd,
 			@FormParam("sc") String subjectCode,
 			@FormParam("rn") String roomName,
 			@FormParam("i") String instructor){
 
-return sc.updateSection(pk,name, dayOfTheWeekSchedule, timeStart, timeEnd, slots, subjectCode, roomName, instructor);
+return sc.updateSection(pk, sectionName, dayOfTheWeekSchedule, timeStart, timeEnd, subjectCode, roomName, instructor);
 }
 	
 	@DELETE

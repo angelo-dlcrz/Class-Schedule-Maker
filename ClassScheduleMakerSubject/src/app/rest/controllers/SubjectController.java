@@ -48,13 +48,11 @@ public class SubjectController {
     @Produces(MediaType.APPLICATION_JSON)
 	public Subject addSubject(
 							  @FormParam("sc") String subjectCode,
-							  @FormParam("c") String category, 
 							  @FormParam("n") String name, 
-							  @FormParam("d") String department,
-							  @FormParam("dr") String departmentRestrictions
+							  @FormParam("d") String department
 							  ){
 		
-		return sc.addSubject(subjectCode,category, name, department, departmentRestrictions);
+		return sc.addSubject(subjectCode, name, department);
 		
 	}
 
@@ -65,13 +63,11 @@ public class SubjectController {
 	public Subject updateSubject(
 				@FormParam("pk") Long pk,
 				@FormParam("sc") String subjectCode,
-				@FormParam("c") String category, 
 				@FormParam("n") String name, 
-				@FormParam("d") String department,
-				@FormParam("dr") String departmentRestrictions
+				@FormParam("d") String department
 			  ) throws Exception{
 		
-		return sc.updateSubject(pk, subjectCode, category, name, department, departmentRestrictions);
+		return sc.updateSubject(pk, subjectCode, name, department);
 		
 		
 	}
