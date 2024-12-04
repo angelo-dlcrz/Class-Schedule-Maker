@@ -25,13 +25,13 @@ public class RoomComponent {
 	}
 
 	@Transactional
-    public Room addRoom(String roomNumber) {
+    public Room addRoom(String roomName) {
         Room newRoom = new Room();
-        	newRoom.setRoomNumber(roomNumber);
+        	newRoom.setRoomName(roomName);
         return roomRepo.save(newRoom);
     }
 	
-    public Room updateRoom(Long pk, String roomNumber) throws Exception {
+    public Room updateRoom(Long pk, String roomName) throws Exception {
     	
     	Room existingRoom = roomRepo.findByRoomPk(pk);
         
@@ -39,8 +39,8 @@ public class RoomComponent {
     	
 	        if (existingRoom != null) {
 	        	
-	        	 if (roomNumber != null && !roomNumber.isEmpty()) {
-	                 existingRoom.setRoomNumber(roomNumber);
+	        	 if (roomName != null && !roomName.isEmpty()) {
+	                 existingRoom.setRoomName(roomName);
 	        	 }
 	            
 	            return roomRepo.save(existingRoom);

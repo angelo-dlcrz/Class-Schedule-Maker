@@ -25,14 +25,14 @@ public class RoomInitializer {
 			}
 			
 			
-			room[0].setRoomNumber("CTC215");
-			room[1].setRoomNumber("CTC216");
-			room[2].setRoomNumber("CTC214");
-			room[3].setRoomNumber("SOM301");
-			room[4].setRoomNumber("SOM302");
-			room[5].setRoomNumber("SOM303");
-			room[6].setRoomNumber("SECA102");
-			room[7].setRoomNumber("SECA101");
+			room[0].setRoomName("CTC215");
+			room[1].setRoomName("CTC216");
+			room[2].setRoomName("CTC214");
+			room[3].setRoomName("SOM301");
+			room[4].setRoomName("SOM302");
+			room[5].setRoomName("SOM303");
+			room[6].setRoomName("SECA102");
+			room[7].setRoomName("SECA101");
 
 
 			
