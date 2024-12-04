@@ -16,8 +16,7 @@ public class Room {
 	@Column
     private Long roomPk;
 
-	// Changed to roomName
-	@Column
+	@Column(unique=true)
 	@NotNull
     private String roomName;
 

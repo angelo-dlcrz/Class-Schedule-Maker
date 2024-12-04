@@ -15,7 +15,7 @@ public class Instructor {
 	@Column
     private Long instructorPk;
 	
-	@Column
+	@Column(unique=true)
 	@NotNull
     private String instructorName;
 
