@@ -25,11 +25,11 @@ public class InstructorInitializer {
 			}
 			
 			
-			instructor[0].setName("Asterion Delabat");
+			instructor[0].setInstructorName("Asterion Delabat");
 //			instructor[0].setCourseHandled("THEO 11");
 //			instructor[0].setSections("B2");
 
-			instructor[1].setName("Jacoby Cano");
+			instructor[1].setInstructorName("Jacoby Cano");
 //			instructor[1].setCourseHandled("THEO 12");
 	
 			for(int x = 0; x <= 1; x++) {
