@@ -40,10 +40,6 @@ public class Section {
 	@NotNull
     private String timeEnd;
 	
-	@Column
-	@NotNull
-    private int slots;
-	
 	@ManyToOne
     @JoinColumn(name = "subjectPk")
     private Subject subject;
@@ -100,14 +96,6 @@ public class Section {
 		this.timeEnd = timeEnd;
 	}
 
-	public int getSlots() {
-		return slots;
-	}
-
-	public void setSlots(int slots) {
-		this.slots = slots;
-	}
-
 	public Subject getSubject() {
 		return subject;
 	}
@@ -135,7 +123,7 @@ public class Section {
 	@Override
 	public String toString() {
 		return "Section [sectionPk=" + sectionPk + ", sectionName=" + sectionName + ", dayOfTheWeekSchedule="
-				+ dayOfTheWeekSchedule + ", timeStart=" + timeStart + ", timeEnd=" + timeEnd + ", slots=" + slots
-				+ ", subject=" + subject + ", room=" + room + ", instructors=" + instructors + "]";
+				+ dayOfTheWeekSchedule + ", timeStart=" + timeStart + ", timeEnd=" + timeEnd + ", subject=" + subject
+				+ ", room=" + room + ", instructors=" + instructors + "]";
 	}
 }

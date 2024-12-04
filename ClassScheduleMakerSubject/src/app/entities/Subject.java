@@ -18,21 +18,14 @@ public class Subject {
 	@Column
 	@NotNull
     private String subjectCode;
-	
-	@Column
-	@NotNull
-    private String category;
 
 	@Column
 	@NotNull
-    private String name;
+    private String courseTitle;
 
 	@Column
 	@NotNull
     private String department;
-
-	@Column
-    private String departmentRestrictions;
 
 	public Long getSubjectPk() {
 		return subjectPk;
@@ -50,20 +43,12 @@ public class Subject {
 		this.subjectCode = subjectCode;
 	}
 
-	public String getCategory() {
-		return category;
+	public String getCourseTitle() {
+		return courseTitle;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setCourseTitle(String courseTitle) {
+		this.courseTitle = courseTitle;
 	}
 
 	public String getDepartment() {
@@ -74,17 +59,9 @@ public class Subject {
 		this.department = department;
 	}
 
-	public String getDepartmentRestrictions() {
-		return departmentRestrictions;
-	}
-
-	public void setDepartmentRestrictions(String departmentRestrictions) {
-		this.departmentRestrictions = departmentRestrictions;
-	}
-
 	@Override
 	public String toString() {
-		return "Subject [subjectPk=" + subjectPk + ", subjectCode=" + subjectCode + ", category=" + category + ", name="
-				+ name + ", department=" + department + ", departmentRestrictions=" + departmentRestrictions + "]";
+		return "Subject [subjectPk=" + subjectPk + ", subjectCode=" + subjectCode + ", courseTitle=" + courseTitle
+				+ ", department=" + department + "]";
 	}
 }

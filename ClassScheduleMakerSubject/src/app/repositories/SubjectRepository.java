@@ -17,11 +17,3 @@ public interface SubjectRepository extends JpaRepository<Subject, Long> {
 	public Subject findBySubjectCode(String subjectCode);
 	
 }
-
-
-//List<Subject> findAll();
-//This method gets all the subject entities in the repository.
-//Subject findByPk(Long pk);
-//This method finds a specific subject based on the given key.
-//void deleteByPk(Long pk);
-//This method deletes a subject instance based on a given primary key.

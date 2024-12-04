@@ -17,7 +17,7 @@ public class Instructor {
 	
 	@Column
 	@NotNull
-    private String name;
+    private String instructorName;
 
 	public Long getInstructorPk() {
 		return instructorPk;
@@ -27,16 +27,16 @@ public class Instructor {
 		this.instructorPk = instructorPk;
 	}
 
-	public String getName() {
-		return name;
+	public String getInstructorName() {
+		return instructorName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setInstructorName(String instructorName) {
+		this.instructorName = instructorName;
 	}
 
 	@Override
 	public String toString() {
-		return "Instructor [instructorPk=" + instructorPk + ", name=" + name + "]";
+		return "Instructor [instructorPk=" + instructorPk + ", name=" + instructorName + "]";
 	}
 }
