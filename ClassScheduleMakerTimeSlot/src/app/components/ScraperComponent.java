@@ -28,8 +28,10 @@ import app.repositories.SubjectRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -44,6 +46,54 @@ public class ScraperComponent {
             "NSTP (OSCI)", "PH", "PE", "PS", "POS", "PSY", "QMIT", "SB", "SOCSCI",
             "SA", "TH", "TMP"
     );
+    
+    private static final Map<String, String> DEPT_CODE_TO_DEPT = new HashMap<>();
+
+    static {
+    	DEPT_CODE_TO_DEPT.put("IE", "ALL INTERDISCIPLINARY ELECTIVES");
+        DEPT_CODE_TO_DEPT.put("BIO", "BIOLOGY");
+        DEPT_CODE_TO_DEPT.put("CH", "CHEMISTRY");
+        DEPT_CODE_TO_DEPT.put("CHN", "CHINESE STUDIES PROGRAM");
+        DEPT_CODE_TO_DEPT.put("COM", "COMMUNICATION");
+        DEPT_CODE_TO_DEPT.put("CEPP", "DEPARTMENT OF CATHOLIC EDUCATION PHILOSOPHY AND PRACTICE");
+        DEPT_CODE_TO_DEPT.put("CPA", "DEPARTMENT OF CURRICULUM, PEDAGOGY AND ASSESSMENT");
+        DEPT_CODE_TO_DEPT.put("ELM", "DEPARTMENT OF EDUCATIONAL LEADERSHIP AND MANAGEMENT");
+        DEPT_CODE_TO_DEPT.put("DS", "DEVELOPMENT STUDIES PROGRAM");
+        DEPT_CODE_TO_DEPT.put("EC", "ECONOMICS");
+        DEPT_CODE_TO_DEPT.put("ECE", "ELECTRONICS, COMPUTER and COMMUNICATIONS ENG.");
+        DEPT_CODE_TO_DEPT.put("EN", "ENGLISH");
+        DEPT_CODE_TO_DEPT.put("ES", "ENVIRONMENTAL SCIENCE");
+        DEPT_CODE_TO_DEPT.put("EU", "EUROPEAN STUDIES");
+        DEPT_CODE_TO_DEPT.put("FIL", "FILIPINO");
+        DEPT_CODE_TO_DEPT.put("FAA", "FINANCE AND ACCOUNTING");
+        DEPT_CODE_TO_DEPT.put("FA", "FINE ARTS");
+        DEPT_CODE_TO_DEPT.put("HSP", "HEALTH SCIENCES PROGRAM");
+        DEPT_CODE_TO_DEPT.put("HI", "HISTORY");
+        DEPT_CODE_TO_DEPT.put("SOHUM", "HUMANITIES");
+        DEPT_CODE_TO_DEPT.put("DISCS", "INFORMATION SYSTEMS AND COMPUTER SCIENCE");
+        DEPT_CODE_TO_DEPT.put("SALT", "INSTITUTE FOR THE SCIENCE AND ART OF LEARNING AND TEACHING (SALT)");
+        DEPT_CODE_TO_DEPT.put("INTAC", "INTAC");
+        DEPT_CODE_TO_DEPT.put("IS", "INTERDISCIPLINARY STUDIES DEPARTMENT");
+        DEPT_CODE_TO_DEPT.put("JSP", "JAPANESE STUDIES PROGRAM");
+        DEPT_CODE_TO_DEPT.put("KSP", "KOREAN STUDIES PROGRAM");
+        DEPT_CODE_TO_DEPT.put("LAS", "LEADERSHIP AND STRATEGY");
+        DEPT_CODE_TO_DEPT.put("MAL", "MARKETING AND LAW");
+        DEPT_CODE_TO_DEPT.put("MA", "MATHEMATICS");
+        DEPT_CODE_TO_DEPT.put("ML", "MODERN LANGUAGES");
+        DEPT_CODE_TO_DEPT.put("NSTP (ADAST)", "NATIONAL SERVICE TRAINING PROGRAM (ADAST)");
+        DEPT_CODE_TO_DEPT.put("NSTP (OSCI)", "NATIONAL SERVICE TRAINING PROGRAM (OSCI)");
+        DEPT_CODE_TO_DEPT.put("PH", "PHILOSOPHY");
+        DEPT_CODE_TO_DEPT.put("PE", "PHYSICAL EDUCATION");
+        DEPT_CODE_TO_DEPT.put("PS", "PHYSICS");
+        DEPT_CODE_TO_DEPT.put("POS", "POLITICAL SCIENCE");
+        DEPT_CODE_TO_DEPT.put("PSY", "PSYCHOLOGY");
+        DEPT_CODE_TO_DEPT.put("QMIT", "QUANTITATIVE METHODS AND INFORMATION TECHNOLOGY");
+        DEPT_CODE_TO_DEPT.put("SB", "SCIENCE BLOCK");
+        DEPT_CODE_TO_DEPT.put("SOCSCI", "SOCIAL SCIENCES");
+        DEPT_CODE_TO_DEPT.put("SA", "SOCIOLOGY/ANTHROPOLOGY");
+        DEPT_CODE_TO_DEPT.put("TH", "THEOLOGY");
+        DEPT_CODE_TO_DEPT.put("TMP", "THEOLOGY AND MINISTRY PROGRAM");
+    }
 
     @Autowired
     InstructorRepository instructorRepository;
