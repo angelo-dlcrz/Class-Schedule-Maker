@@ -26,6 +26,7 @@ import app.repositories.RoomRepository;
 import app.repositories.SectionRepository;
 import app.repositories.SubjectRepository;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -152,19 +153,28 @@ public class ScraperComponent {
             }
             String timeStart = timeRange[0];
             String timeEnd = timeRange[1];
+            
+            List<String> instructorsNames = splitInstructorNames(instructorName);
+            List<Instructor> instructors = new ArrayList<>();
 
-            Instructor instructor = instructorRepository.findByInstructorName(instructorName);
-            if (instructor == null) {
-                instructor = new Instructor();
-                instructor.setInstructorName(instructorName);
-                instructorRepository.save(instructor);
+            for (String name: instructorsNames) {
+            	Instructor instructor = instructorRepository.findByInstructorName(name);
+                if (instructor == null) {
+                    instructor = new Instructor();
+                    instructor.setInstructorName(name);
+                    instructor = instructorRepository.save(instructor);
+                    instructors.add(instructor);
+                }
+                else {
+                	instructors.add(instructor);
+                }
             }
 
             Room room = roomRepository.findByRoomName(roomName);
             if (room == null) {
                 room = new Room();
                 room.setRoomName(roomName);
-                roomRepository.save(room);
+                room = roomRepository.save(room);
             }
 
             Subject subject = subjectRepository.findBySubjectCode(subjectCode);
@@ -173,7 +183,7 @@ public class ScraperComponent {
                 subject.setSubjectCode(subjectCode);
                 subject.setCourseTitle(courseTitle);
                 subject.setDepartment(deptCode);
-                subjectRepository.save(subject);
+                subject = subjectRepository.save(subject);
             }
 
             Section sectionEntity = sectionRepository.findBySectionName(section);
@@ -185,11 +195,46 @@ public class ScraperComponent {
                 sectionEntity.setTimeEnd(timeEnd);
                 sectionEntity.setRoom(room);
                 sectionEntity.setSubject(subject);
-                sectionEntity.getInstructors().add(instructor);
+                for (Instructor instructor: instructors) {
+                	sectionEntity.getInstructors().add(instructor);
+                }
                 sectionRepository.save(sectionEntity);
             }
         } catch (Exception e) {
             System.err.println("Error saving schedule: " + e.getMessage());
         }
+    }
+    
+    public List<String> splitInstructorNames(String instructorName) {
+        List<String> instructors = new ArrayList<>();
+        StringBuilder currentName = new StringBuilder();
+        int commaCount = 0;
+    
+        for (char c : instructorName.toCharArray()) {
+            if (c == ',') {
+                commaCount++;
+            }
+    
+            currentName.append(c);
+
+            if (commaCount % 2 == 0 && c == ',') {
+                instructors.add(currentName.toString().trim());
+                currentName.setLength(0);
+                commaCount = 0;
+            }
+        }
+
+        if (currentName.length() > 0) {
+            instructors.add(currentName.toString().trim());
+        }
+        
+        for (int i = 0; i < instructors.size(); i++){
+            String beforeName = instructors.get(i);
+            if (beforeName.endsWith(",")){
+                instructors.set(i, beforeName.substring(0, beforeName.length()-1));
+            }
+        }
+    
+        return instructors;
     }
 }
