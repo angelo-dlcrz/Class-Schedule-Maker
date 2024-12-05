@@ -12,7 +12,7 @@ public interface InstructorRepository extends JpaRepository<Instructor, Long> {
 	
 	public List<Instructor> findAll();
 	public Instructor findByInstructorPk(Long InstructorPk);
-	public Instructor findByName(String name);
+	public Instructor findByInstructorName(String name);
 	public void deleteByInstructorPk(Long InstructorPk);
 
 }

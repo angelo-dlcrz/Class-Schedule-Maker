@@ -42,7 +42,7 @@ public class SectionComponent {
 	@Transactional
 	public Section createSection(String sectionName, String dayOfTheWeekSchedule, String timeStart, String timeEnd, String subjectCode, String roomName, String instructor) {
 		Subject s1 = subrepo.findBySubjectCode(subjectCode);
-		Instructor ins = insrepo.findByName(instructor);
+		Instructor ins = insrepo.findByInstructorName(instructor);
 		Room rm = roomrepo.findByRoomName(roomName);
 
 		Section sect = repo.findBySectionName(sectionName);
@@ -74,7 +74,7 @@ public class SectionComponent {
 		
 		Section s = repo.findBySectionPk(pk);
 		Subject s1 = subrepo.findBySubjectCode(subjectCode);
-		Instructor ins = insrepo.findByName(instructor);
+		Instructor ins = insrepo.findByInstructorName(instructor);
 		Room rm = roomrepo.findByRoomName(roomName);
 
 		Section sect = repo.findBySectionName(sectionName);
