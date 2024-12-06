@@ -13,9 +13,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import app.components.MessageTwilioComponent;
+import app.components.TwilioReply;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import app.components.TwilioReply;
 import app.components.UserComponent;
 import app.entities.User;
 
@@ -25,6 +30,18 @@ public class UserController {
 
     @Autowired
     private UserComponent uc;
+    
+    @Autowired 
+    private MessageTwilioComponent mtc;
+    
+    
+//    @GET
+//    @Path("/addSectionTwilio")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public TwilioReply addSectionTwilio(@QueryParam("stupk") Long studentID, @QueryParam("secpk") Long sectionPk) throws Exception {
+//       return this.mtc.sendMessageToUser(studentID, sectionPk);
+//    }
+    //
 
     @GET
     @Path("/retrieveAll")
@@ -61,15 +78,23 @@ public class UserController {
     @Path("/addSection")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public User updateUser(@FormParam("stupk") Long studentID, @FormParam("secpk") Long sectionPk) {
+    public User addSection(@FormParam("stupk") Long studentID, @FormParam("secpk") Long sectionPk) throws Exception {
     	return uc.addSection(studentID, sectionPk);
+    }
+    
+    @DELETE
+    @Path("/deleteSection")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public User deleteSection(@QueryParam("stupk") Long studentID, @QueryParam("secpk") Long sectionPk) throws Exception {
+    	return uc.deleteSection(studentID, sectionPk);
     }
     
     @PUT
     @Path("/updateSection")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public User updateUser(@FormParam("stupk") Long studentID, @FormParam("oldsec") Long oldSectionPk, @FormParam("newsec") Long newSectionPk) {
+    public User updateSection(@FormParam("stupk") Long studentID, @FormParam("oldsec") Long oldSectionPk, @FormParam("newsec") Long newSectionPk) {
     	return uc.updateSection(studentID, oldSectionPk, newSectionPk);
     }
     
@@ -79,4 +104,6 @@ public class UserController {
     public String deleteUser(@QueryParam("pk") Long studentID) {
     	return uc.deleteUser(studentID);
     }
+    
+    
 }
