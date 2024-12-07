@@ -12,9 +12,11 @@ import app.entities.Section;
 import app.entities.User;
 import app.repositories.SectionRepository;
 import app.repositories.UserRepository;
+import app.services.LoginService;
 
 @Component
 public class UserComponent {
+	
 	@Autowired
 	private UserRepository repo;
 	
@@ -22,8 +24,10 @@ public class UserComponent {
 	private SectionRepository section_repo;
 	
 	@Autowired
-	 TwilioComponent tc;
+	TwilioComponent tc;
 	
+  @Autowired
+	private LoginService loginService;
 	
 	public List<User> getAllUsers() {
 		 return repo.findAll();
@@ -33,14 +37,9 @@ public class UserComponent {
 		return repo.findByUserPk(studentID);
 	}
 	
-	public User createUser(String name, String course, String phoneNumber) {
-		User u1 = new User();
-		u1.setName(name);
-		u1.setCourse(course);
-		u1.setPhoneNumber(phoneNumber);
-		return repo.save(u1);
+	public User createUser(String username, String password, String name, String course, String phoneNumber) {
+		return loginService.register(username, password, name, course, phoneNumber);
 	}
-	
 	
 	public User updateUser(Long studentID, String name, String course, String phoneNumber) {
 		User u1 = repo.findByUserPk(studentID);
@@ -146,6 +145,20 @@ public class UserComponent {
 
 		return repo.save(u1);
 	}
-
 	
+	public String login(String username, String password) {
+        return loginService.login(username, password);
+    }
+	
+	public void logout(String sessionId) {
+        loginService.logout(sessionId);
+    }
+
+    public User getUserFromSession(String sessionId) {
+        User user = loginService.getUserFromSession(sessionId);
+        if (user == null) {
+            throw new RuntimeException("Session not found or expired");
+        }
+        return user;
+    }
 }
