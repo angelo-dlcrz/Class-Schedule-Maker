@@ -17,12 +17,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column
 	private Long userPk;
+	
+	@Column(unique = true)
+    @NotNull
+    private String username;
+
+    @Column
+    @NotNull
+    @JsonIgnore
+    private String password;
 	
 	@Column
 	@NotNull
@@ -40,6 +52,29 @@ public class User {
     @JoinColumn(name = "sectionPk", nullable = true)
     private Set<Section> sections = new HashSet<>();
 
+	public Long getUserPk() {
+		return userPk;
+	}
+
+	public void setUserPk(Long userPk) {
+		this.userPk = userPk;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public String getName() {
 		return name;
@@ -65,15 +100,6 @@ public class User {
 		this.phoneNumber = phoneNumber;
 	}
 
-
-	public Long getUserPk() {
-		return userPk;
-	}
-
-	public void setUserPk(Long userPk) {
-		this.userPk = userPk;
-	}
-
 	public Set<Section> getSections() {
 		return sections;
 	}
@@ -84,10 +110,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userPk=" + userPk + ", name=" + name + ", course=" + course + ", phoneNumber=" + phoneNumber
-				+ ", sections=" + sections + "]";
+		return "User [userPk=" + userPk + ", username=" + username + ", password=" + password + ", name=" + name
+				+ ", course=" + course + ", phoneNumber=" + phoneNumber + ", sections=" + sections + "]";
 	}
-	
-	
-	
 }
