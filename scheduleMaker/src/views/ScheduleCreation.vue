@@ -66,6 +66,8 @@ const schedule = ref([]);
 const selectedDepartment = ref('');
 const departments = ref([]);
 const userData = ref(null);
+const userPk = ref(null);
+
 
 // Time Formatting
 const formatTime = (time) => {
@@ -132,9 +134,21 @@ Please check your current schedule and choose a different section.`);
 
 onMounted(async () => {
   try {
+    // Get session ID from localStorage or wherever you store it
+    const sessionId = localStorage.getItem('sessionId');
+    
+    // First validate the user and get user details
+    const validateResponse = await axios.get('http://127.0.0.1:9997/user/validate', {
+      params: { sid: sessionId }
+    });
+    userPk.value = validateResponse.data.userPk;
+
+    // Now use the userPk for subsequent requests
     const [scheduleResponse, userResponse] = await Promise.all([
       axios.get('http://127.0.0.1:9999/section/retrieveAll'),
-      axios.get('http://127.0.0.1:9997/user/retrieve', { params: { pk: 1 } })
+      axios.get('http://127.0.0.1:9997/user/retrieve', { 
+        params: { pk: userPk.value } 
+      })
     ]);
 
     schedule.value = scheduleResponse.data;
@@ -144,6 +158,11 @@ onMounted(async () => {
     departments.value = [...new Set(schedule.value.map(item => item.subject.department))].sort();
   } catch (error) {
     console.error('Error fetching data:', error);
+    // You might want to redirect to login if validation fails
+    if (error.response?.status === 401) {
+      // Handle unauthorized access
+      console.error('Unauthorized access, please login again');
+    }
   }
 });
 
@@ -155,7 +174,7 @@ const selectClass = async (item) => {
 
   try {
     const formData = new URLSearchParams();
-    formData.append('stupk', 1);
+    formData.append('stupk', userPk.value);
     formData.append('secpk', item.sectionPk);
     
     console.log('Sending data:', formData.toString());
@@ -172,7 +191,7 @@ const selectClass = async (item) => {
     console.log('Response:', response.data);
     
     const userResponse = await axios.get('http://127.0.0.1:9997/user/retrieve', {
-      params: { pk: 1 }
+      params: { pk: userPk.value }
     });
     userData.value = userResponse.data;
     

@@ -30,7 +30,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const username = ref('')
 const password = ref('')
-constname = ref('')
+const name = ref('')
 const course = ref('')
 const phoneNumber = ref('')
 

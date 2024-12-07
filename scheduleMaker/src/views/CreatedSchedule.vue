@@ -23,7 +23,8 @@
             <td v-for="day in ['M', 'T', 'W', 'TH', 'F']" :key="day" 
                 class="border px-4 py-2 min-h-[60px]">
               <div v-if="getClassForTimeAndDay(time, day)" 
-                   class="bg-blue-100 p-2 rounded">
+                   class="bg-blue-100 p-2 rounded cursor-pointer hover:bg-blue-200"
+                   @click="deleteSection(getClassForTimeAndDay(time, day))">
                 <div class="font-bold">{{ getClassForTimeAndDay(time, day).subject.subjectCode }}</div>
                 <div class="text-sm">{{ getClassForTimeAndDay(time, day).sectionName }}</div>
                 <div class="text-sm">{{ getClassForTimeAndDay(time, day).room.roomName }}</div>
@@ -44,6 +45,7 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
 const userData = ref(null);
+const userPk = ref(null);
 
 // Generate time slots for every 30 minutes from 7:00 AM to 9:00 PM
 const generateTimeSlots = () => {
@@ -78,22 +80,64 @@ const getClassForTimeAndDay = (time, day) => {
     
     // Check if the current time slot falls within the class time range
     const timeMatch = currentTime >= classStartTime && currentTime < classEndTime;
-    const dayMatch = section.dayOfTheWeekSchedule.includes(day);
+    
+    // Split the schedule into individual days and handle M-TH case properly
+    const scheduleDays = section.dayOfTheWeekSchedule.split('-');
+    const dayMatch = scheduleDays.includes(day) || 
+                    (day === 'TH' && scheduleDays.includes('TH')) ||
+                    (day === 'T' && scheduleDays.includes('T') && !scheduleDays.includes('TH'));
     
     return timeMatch && dayMatch;
   });
 };
 
+// Add the delete function
+const deleteSection = async (section) => {
+  if (!confirm(`Are you sure you want to remove ${section.subject.subjectCode} from your schedule?`)) {
+    return;
+  }
+
+  try {
+    await axios.delete('http://127.0.0.1:9997/user/deleteSection', {
+      params: {
+        stupk: userPk.value,
+        secpk: section.sectionPk
+      }
+    });
+
+    // Refresh user data after deletion
+    const response = await axios.get('http://127.0.0.1:9997/user/retrieve', {
+      params: { pk: userPk.value }
+    });
+    userData.value = response.data;
+    
+    alert('Class successfully removed from your schedule!');
+  } catch (error) {
+    console.error('Error deleting section:', error);
+    alert('Failed to remove class. Please try again.');
+  }
+};
+
 onMounted(async () => {
   try {
+    // Get session ID and validate user first
+    const sessionId = localStorage.getItem('sessionId');
+    const validateResponse = await axios.get('http://127.0.0.1:9997/user/validate', {
+      params: { sid: sessionId }
+    });
+    userPk.value = validateResponse.data.userPk;  // Store userPk for later use
+
+    // Use the validated userPk to retrieve user data
     const response = await axios.get('http://127.0.0.1:9997/user/retrieve', {
-      params: {
-        pk: 1
-      }
+      params: { pk: userPk.value }
     });
     userData.value = response.data;
   } catch (error) {
     console.error('Error fetching user data:', error);
+    if (error.response?.status === 401) {
+      console.error('Unauthorized access, please login again');
+      // Handle unauthorized access (e.g., redirect to login)
+    }
   }
 });
 </script>
@@ -140,5 +184,13 @@ tr:nth-child(even) {
 
 tr:hover td {
   background-color: #f3f4f6;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.hover\:bg-blue-200:hover {
+  background-color: #bfdbfe;
 }
 </style>
