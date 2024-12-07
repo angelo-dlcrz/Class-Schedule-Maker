@@ -2,6 +2,9 @@ package app.components;
 
 import java.util.Iterator;
 import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +24,9 @@ public class UserComponent {
 	private SectionRepository section_repo;
 	
 	@Autowired
+	TwilioComponent tc;
+	
+  @Autowired
 	private LoginService loginService;
 	
 	public List<User> getAllUsers() {
@@ -54,13 +60,76 @@ public class UserComponent {
 		return "User deleted successfully";
 	}
 	
-	public User addSection(Long studentID, Long sectionPk) {
+	public User addSection(Long studentID, Long sectionPk) throws Exception {
 		User u1 = repo.findByUserPk(studentID);
 		Section s1 = section_repo.findBySectionPk(sectionPk);
+		  if (u1 == null) {
+		        throw new IllegalArgumentException("User not found for ID: " + studentID);
+		    }
+		  if (s1 == null) {
+		        throw new IllegalArgumentException("Section not found for ID: " + sectionPk);
+		    }
+		  boolean sectionChecker = u1.getSections().stream()
+				    .anyMatch(section -> section.getSectionPk().equals(s1.getSectionPk()));
+
+				if (sectionChecker) {
+				    throw new IllegalArgumentException("Section already enrolled: " + sectionPk);
+				}
+		
+		
 		u1.getSections().add(s1);
-		return repo.save(u1);
+		User savedUser = repo.save(u1);
+		
+		try {
+	        String message = "Hello " + u1.getName() + 
+	                         ", a new class has been added to your schedule: " + 
+	                         s1.getSubject().getCourseTitle() + ", Section " + s1.getSectionName();
+	        tc.sendMessage(u1.getPhoneNumber(), message);
+	    } catch (Exception e) {
+	        // Log or handle the error
+	        System.err.println("Failed to send Twilio message: " + e.getMessage());
+	    }
+
+		
+		return savedUser;
 	}
 	
+	@Transactional
+	public User deleteSection(Long studentID, Long sectionPk) throws Exception {
+	    User u1 = repo.findByUserPk(studentID);
+	    Section s1 = section_repo.findBySectionPk(sectionPk);
+
+	    if (u1 == null) {
+	        throw new IllegalArgumentException("User not found for ID: " + studentID);
+	    }
+	    if (s1 == null) {
+	        throw new IllegalArgumentException("Section not found for ID: " + sectionPk);
+	    }
+
+	    boolean isEnrolled = u1.getSections().stream()
+	        .anyMatch(section -> section.getSectionPk().equals(s1.getSectionPk()));
+
+	    if (!isEnrolled) {
+	        throw new IllegalArgumentException("User is not enrolled in section with ID: " + sectionPk);
+	    }
+
+	    u1.getSections().remove(s1);	    
+	    User savedUser= repo.save(u1);
+
+	    try {
+	        String message = "Hello, " + u1.getName() + ". Your scheduled class " + s1.getSubject().getCourseTitle() + ", Section "+ s1.getSectionName() + " has been removed from your schedule.";
+	        tc.sendMessage(u1.getPhoneNumber(), message);
+	    } catch (Exception e) {
+	        // Log or handle the error
+	        System.err.println("Failed to send Twilio message: " + e.getMessage());
+	    }
+	    
+
+	    return savedUser;
+	}
+	
+	
+
 	public User updateSection(Long studentID, Long oldSectionPk, Long newSectionPk) {
 		User u1 = repo.findByUserPk(studentID);
 		Section s1 = section_repo.findBySectionPk(newSectionPk);
