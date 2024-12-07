@@ -47,11 +47,9 @@ import axios from 'axios';
 const userData = ref(null);
 const userPk = ref(null);
 
-// Generate time slots for every 30 minutes from 7:00 AM to 9:00 PM
 const generateTimeSlots = () => {
   const slots = [];
   for (let hour = 7; hour <= 21; hour++) {
-    // Time Formatting for 30-minute intervals
     slots.push(`${hour.toString().padStart(2, '0')}00`);
     slots.push(`${hour.toString().padStart(2, '0')}30`);
   }
@@ -60,7 +58,6 @@ const generateTimeSlots = () => {
 
 const timeSlots = ref(generateTimeSlots());
 
-// Format time for display
 const formatTimeDisplay = (time) => {
   const hours = parseInt(time.substring(0, 2));
   const minutes = time.substring(2);
@@ -69,7 +66,6 @@ const formatTimeDisplay = (time) => {
   return `${displayHours}:${minutes} ${period}`;
 };
 
-// Check if a class occurs at a specific time and day
 const getClassForTimeAndDay = (time, day) => {
   if (!userData.value?.sections) return null;
   
@@ -78,10 +74,8 @@ const getClassForTimeAndDay = (time, day) => {
     const classEndTime = parseInt(section.timeEnd);
     const currentTime = parseInt(time);
     
-    // Check if the current time slot falls within the class time range
     const timeMatch = currentTime >= classStartTime && currentTime < classEndTime;
     
-    // Split the schedule into individual days and handle M-TH case properly
     const scheduleDays = section.dayOfTheWeekSchedule.split('-');
     const dayMatch = scheduleDays.includes(day) || 
                     (day === 'TH' && scheduleDays.includes('TH')) ||
@@ -91,7 +85,6 @@ const getClassForTimeAndDay = (time, day) => {
   });
 };
 
-// Add the delete function
 const deleteSection = async (section) => {
   if (!confirm(`Are you sure you want to remove ${section.subject.subjectCode} from your schedule?`)) {
     return;
@@ -105,7 +98,6 @@ const deleteSection = async (section) => {
       }
     });
 
-    // Refresh user data after deletion
     const response = await axios.get('http://127.0.0.1:9997/user/retrieve', {
       params: { pk: userPk.value }
     });
@@ -120,14 +112,12 @@ const deleteSection = async (section) => {
 
 onMounted(async () => {
   try {
-    // Get session ID and validate user first
     const sessionId = localStorage.getItem('sessionId');
     const validateResponse = await axios.get('http://127.0.0.1:9997/user/validate', {
       params: { sid: sessionId }
     });
     userPk.value = validateResponse.data.userPk;  // Store userPk for later use
 
-    // Use the validated userPk to retrieve user data
     const response = await axios.get('http://127.0.0.1:9997/user/retrieve', {
       params: { pk: userPk.value }
     });
@@ -136,7 +126,6 @@ onMounted(async () => {
     console.error('Error fetching user data:', error);
     if (error.response?.status === 401) {
       console.error('Unauthorized access, please login again');
-      // Handle unauthorized access (e.g., redirect to login)
     }
   }
 });

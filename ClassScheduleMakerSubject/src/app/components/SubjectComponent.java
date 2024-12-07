@@ -59,9 +59,12 @@ public class SubjectComponent {
  	         if (subjectCode != null && !subjectCode.isEmpty()) {
  	                 existingSubject.setSubjectCode(subjectCode);
  	             }
- 	           if (department != null && !department.isEmpty()) {
+ 	          if (department != null && !department.isEmpty()) {
  	                 existingSubject.setDepartment(department);
  	             }
+ 	          
+ 	         if (name != null && !name.isEmpty()) {
+	                 existingSubject.setCourseTitle(name);            }
  	        	        	
  	       	return subjRepo.save(existingSubject);
  	            

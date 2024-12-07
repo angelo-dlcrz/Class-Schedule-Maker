@@ -55,13 +55,11 @@ const schedule = ref([]);
 const selectedDepartment = ref('');
 const departments = ref([]);
 
-// Time Formatting
 const formatTime = (time) => {
   if (!time) return '';
   return `${time.substring(0, 2)}:${time.substring(2)}`;
 };
 
-// Schedule Filtering
 const filteredSchedule = computed(() => {
   if (!selectedDepartment.value) {
     return schedule.value;
@@ -76,7 +74,6 @@ onMounted(() => {
     .get('http://127.0.0.1:9999/section/retrieveAll')
     .then((response) => {
       schedule.value = response.data;
-      // Extract unique departments
       departments.value = [...new Set(response.data.map(item => item.subject.department))].sort();
     })
     .catch((error) => {

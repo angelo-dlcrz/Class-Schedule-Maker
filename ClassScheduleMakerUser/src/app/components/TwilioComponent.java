@@ -19,7 +19,7 @@ public class TwilioComponent {
 	
 	 //@Scheduled(fixedRate=1000)
 	 public TwilioReply sendMessage(String number, String message) throws Exception {
-	      String creds = "AC1ac8374259b05e592f476f9387b56f6d:14e84cb363b3917ceb6a03d352bb24d9";
+	      String creds = "AC1ac8374259b05e592f476f9387b56f6d:3007ceb6aad1c1318745ea5fa6268f05";
 	      String msgsid = "MG491b399e49276ddbc838035b307efff4";
 	      String url = "https://api.twilio.com/2010-04-01/Accounts/AC1ac8374259b05e592f476f9387b56f6d/Messages.json";
 	      Retrofit retrofit = (new Builder()).baseUrl("https://bogus").build();
