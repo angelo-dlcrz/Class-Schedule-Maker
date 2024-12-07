@@ -5,13 +5,18 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
+    <div class="nav-container">
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/schedule">Schedule</RouterLink>
-        <RouterLink to="/schedule-creation">Create Schedule</RouterLink>
-        <RouterLink to="/created-schedule">Created Schedule</RouterLink>
+        <div class="nav-left">
+          <RouterLink to="/" class="home-link">Class Schedule Maker</RouterLink>
+        </div>
+        <div class="nav-right">
+          <RouterLink to="/schedule">Schedule</RouterLink>
+          <RouterLink to="/schedule-creation">Create Schedule</RouterLink>
+          <RouterLink to="/created-schedule">Created Schedule</RouterLink>
+        </div>
       </nav>
+    </div>
   </header>
 
   <RouterView />
@@ -21,63 +26,75 @@ import HelloWorld from './components/HelloWorld.vue'
 header {
   line-height: 1.5;
   max-height: none;
-  padding: 2rem 0;
+  padding: 1rem 0;
+  background: var(--color-background-soft);
+  border-bottom: 1px solid var(--color-border);
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.nav-container {
+  width: 100%;
+  margin: 0 auto;
 }
 
 nav {
   width: 100%;
-  font-size: 12px;
-  text-align: right;
-  margin-top: 2rem;
+  font-size: 1rem;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.nav-left {
+  flex-shrink: 0;
+  margin-left: 8rem;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+.nav-right {
+  display: flex;
+  gap: 2rem;
+  margin-right: 8rem;
+}
+
+.home-link {
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 nav a {
   display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
-nav a:first-of-type {
-  border: 0;
+nav a:hover {
+  background-color: var(--color-background-mute);
+  transform: translateY(-1px);
+}
+
+nav a.router-link-active {
+  background-color: var(--vt-c-green);
+  color: var(--vt-c-white);
 }
 
 @media (min-width: 1024px) {
   header {
     display: flex;
     place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-    width: 100%;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-end;
-    flex-wrap: wrap;
   }
 
   nav {
-    text-align: right;
-    margin-left: -1rem;
-    font-size: 1rem;
-    padding: 1rem 0;
-    margin-top: 1rem;
+    padding: 0.5rem;
+    margin-top: 0;
   }
 }
 </style>
