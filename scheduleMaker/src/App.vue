@@ -1,6 +1,28 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+  import { RouterLink, RouterView } from 'vue-router'
+  import { ref, onMounted } from 'vue'
+  import axios from 'axios'
+  import { useRouter } from 'vue-router'
+
+  const router = useRouter()
+  const isLoggedIn = ref(false)
+
+  onMounted(() => {
+    isLoggedIn.value = !!localStorage.getItem('sessionId')
+  })
+
+  const logout = async () => {
+    try {
+      const formData = new URLSearchParams()
+      formData.append('sid', localStorage.getItem('sessionId'))
+      await axios.post('http://127.0.0.1:9997/user/logout', formData)
+      localStorage.removeItem('sessionId')
+      isLoggedIn.value = false
+      router.push('/login')
+    } catch (error) {
+      console.error('Logout failed:', error)
+    }
+  }
 </script>
 
 <template>
@@ -14,6 +36,9 @@ import HelloWorld from './components/HelloWorld.vue'
           <RouterLink to="/schedule">Schedule</RouterLink>
           <RouterLink to="/schedule-creation">Create Schedule</RouterLink>
           <RouterLink to="/created-schedule">Created Schedule</RouterLink>
+          <RouterLink v-if="!isLoggedIn" to="/login">Login</RouterLink>
+          <RouterLink v-if="!isLoggedIn" to="/register">Register</RouterLink>
+          <a v-if="isLoggedIn" @click="logout" href="#" class="logout-link">Logout</a>
         </div>
       </nav>
     </div>
