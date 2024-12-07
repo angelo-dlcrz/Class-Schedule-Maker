@@ -12,6 +12,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -92,9 +93,15 @@ public class UserController {
     @Path("/logout")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
-    public String logoutUser(@FormParam("sid") String sessionId) {
-        uc.logout(sessionId);
-        return "Logout successful";
+    public Response logoutUser(@FormParam("sid") String sessionId) {
+    	try {
+            uc.logout(sessionId);
+            return Response.ok("Logout successful").build();
+        } catch (RuntimeException e) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                           .entity(e.getMessage())
+                           .build();
+        }
     }
 
     @GET

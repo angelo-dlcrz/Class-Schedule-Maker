@@ -50,6 +50,9 @@ public class LoginService {
     }
     
     public void logout(String sessionId) {
+    	if (!activeSessions.containsKey(sessionId)) {
+            throw new RuntimeException("Invalid session ID or session already logged out");
+        }
         activeSessions.remove(sessionId);
     }
 
