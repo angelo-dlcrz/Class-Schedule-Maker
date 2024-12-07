@@ -26,7 +26,6 @@ import app.repositories.RoomRepository;
 import app.repositories.SectionRepository;
 import app.repositories.SubjectRepository;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
