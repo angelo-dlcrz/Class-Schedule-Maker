@@ -8,7 +8,7 @@ This is a group project for my Special Topics in Languages: Enterprise Systems P
 2. Make sure that you have [Java](https://www.oracle.com/ph/java/technologies/downloads/) installed in your machine. It is recommended to use Java 11 or older.
 3. Make sure that you have [Node.js](https://nodejs.org/en) installed in your machine.
 4. Make sure that you have [XAMPP](https://www.apachefriends.org/download.html) installed in your machine.
-5. Make sure that you have cURL installed in your machine. If on Windows, use [this](https://curl.se/windows/). If on MacOS/Linux, cURL is installed by default.
+5. Make sure that you have cURL installed in your machine. If on Windows, use [this](https://curl.se/windows/). If on macOS/Linux, cURL is installed by default.
 6. Open the XAMPP Control Panel and start Apache and MySQL.
 7. Run the UserApp, TimeSlotApp, and ClassScheduleMakerSubjectApp from the IDE you use.
 8. In your command line, run the command below. This will populate your database with the necessary class schedule information from AISIS (though for now, it's only the Sem 2 of AY 2024-2025). It's finished when it sends back "Successfully scraped AISIS."
